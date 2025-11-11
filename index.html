@@ -1,12 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Link Quiz</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <!-- React script will render App.js here -->
-  </body>
-</html>
+import React, { useState } from "react";
+
+export default function App() {
+  // Store answers for each question
+  const [answer1, setAnswer1] = useState("");
+  const [answer2, setAnswer2] = useState("");
+  const [answer3, setAnswer3] = useState("");
+  const [score, setScore] = useState(null);
+
+  // Correct answers
+  const correctAnswers = {
+    q1: "b",
+    q2: "a",
+    q3: "c",
+  };
+
+  const checkAnswers = () => {
+    let score = 0;
+    if (answer1 === correctAnswers.q1) score++;
+    if (answer2 === correctAnswers.q2) score++;
+    if (answer3 === correctAnswers.q3) score++;
+    setScore(score);
+    alert(`You have ${score} correct answers!`);
+  };
+
+  return (
+    <div style={{ padding: "20px", marginTop: "50px", marginBottom: "100px", fontFamily: "Arial" }}>
+      <h2>Link Quiz</h2>
+
+      {/* Question 1 */}
+      <p>What game is this Link from?</p>
+      <img
+        src="https://cdn.wikimg.net/en/zeldawiki/images/4/4d/TWW_Link_Wind_Waker_Artwork.png"
+        alt="Wind Waker"
+        width="200"
+        height="200"
+      />
+      <br />
+      <select value={answer1} onChange={(e) => setAnswer1(e.target.value)}>
+        <option value="">Choose one</option>
+        <option value="a">Age of Calamity</option>
+        <option value="b">Wind Waker</option>
+        <option value="c">Link's Awakening</option>
+      </select>
+
+      {/* Question 2 */}
+      <p>What game is this Link from?</p>
+      <img
+        src="https://i.pinimg.com/736x/d7/1c/87/d71c8736bed63cb8d747ec3a8734b10a--the-paw-to-draw.jpg"
+        alt="Ocarina of Time"
+        width="200"
+        height="300"
+      />
+      <br />
+      <select value={answer2} onChange={(e) => setAnswer2(e.target.value)}>
+        <option value="">Choose one</option>
+        <option value="a">Ocarina of Time</option>
+        <option value="b">Breath of the Wild</option>
+        <option value="c">Legend of Zelda II</option>
+      </select>
+
+      {/* Question 3 */}
+      <p>What game is this Link from?</p>
+      <img
+        src="https://tse2.mm.bing.net/th/id/OIP.XaTgqAMKgnjXnuNOhNDT5AHaGd?cb=ucfimgc2&rs=1&pid=ImgDetMain&o=7&rm=3"
+        alt="Twilight Princess"
+        width="200"
+        height="200"
+      />
+      <br />
+      <select value={answer3} onChange={(e) => setAnswer3(e.target.value)}>
+        <option value="">Choose one</option>
+        <option value="a">Echoes of Wisdom</option>
+        <option value="b">Spirit Tracks</option>
+        <option value="c">Twilight Princess</option>
+      </select>
+
+      <br /><br />
+      <button onClick={checkAnswers}>Submit Answers</button>
+
+      {score !== null && (
+        <p style={{ marginTop: 20 }}>You got {score} correct answers!</p>
+      )}
+    </div>
+  );
+}
